@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.think.parentalcontrol"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.think.parentalcontrol_activity.About_Activity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.think.parentalcontrol_activity.CallLogListViewActivity" />
+        <activity android:name="com.think.parentalcontrol_activity.SmsLogListViewActivity" />
+        <activity android:name="com.think.parentalcontrol_activity.URLLogListViewActivity" />
+        <activity android:name="com.think.parentalcontrol_activity.HomeActivity" />
+        <activity android:name="com.think.parentalcontrol_activity.Luanch_Activity" />
+        <!-- Receiver ==================================================================== -->
+        <receiver android:name="com.think.parentalcontrol_receivers.TrackReceivedSmsReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.think.parentalcontrol_receivers.RecordListenerReciever"
+            tools:ignore="ExportedReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="com.think.Recorder.FINISH" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.think.parentalcontrol_receivers.SendInfoToWebReciever"
+            tools:ignore="ExportedReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="com.think.NetWork.SEND_INFO" />
+                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.think.parentalcontrol_services.MydeviceAdminReciever"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.think.parentalcontrol_receivers.AppLauncherBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+        <!-- Services ======================================================================== -->
+        <service android:name="com.think.parentalcontrol_services.RecordingServices" />
+        <service android:name="com.think.parentalcontrol_services.GpsSerivces" />
+    </application>
+
+</manifest>

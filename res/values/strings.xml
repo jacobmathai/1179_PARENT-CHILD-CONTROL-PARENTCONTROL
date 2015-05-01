@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Parental Control</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="call_log">Call Log</string>
+    <string name="sms_log">Sms Log</string>
+    <string name="url_log">URL Log</string>
+    <string name="_">:</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="type">Type</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="duration">Duration</string>
+    <string name="content">Content</string>
+    <string name="title">Title</string>
+    <string name="visit_count">Visit</string>
+    <string name="url">URL</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+</resources>
